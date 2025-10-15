@@ -65,7 +65,6 @@ class UserResource extends Resource
                 Tables\Columns\TextColumn::make('name')->label('Nombre')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('email')->label('Correo electrónico')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('roles.name')->label('Roles')->badge()->sortable(),
-                Tables\Columns\TextColumn::make('created_at')->label('Creado')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
