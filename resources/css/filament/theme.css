@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Personalización: color de fondo del panel lateral */
+/* Modo claro - fondo blanco, texto negro, borde negro */
+.fi-sidebar {
+  background-color: #333333 !important; /* un gris suave, que combina con colores de la paleta */
+  color: #333333 !important; /* texto oscuro para contraste */
+  border-right: 2px solid #333333 !important; /* borde gris claro */
+}
+
+.dark .fi-sidebar {
+  background-color: #2c3e50 !important; /* un color oscuro que combina con `Color::Indigo` o `Color::Gray` */
+  color: #f0f0f0 !important; /* texto claro */
+  border-right: 2px solid #2980b9; /* borde azul oscuro, relacionado con la paleta `Color::Blue` o `Color::Indigo` */
+}

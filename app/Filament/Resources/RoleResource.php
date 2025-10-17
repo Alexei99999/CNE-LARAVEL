@@ -41,8 +41,9 @@ class RoleResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')->label('Nombre')->searchable(),
-                Tables\Columns\TextColumn::make('permissions.name')->label('Permisos')->badge()->sortable(),
+                Tables\Columns\TextColumn::make('id')->label('ID de Persona')->searchable()->sortable()->toggleable(),
+                Tables\Columns\TextColumn::make('name')->label('Nombre')->searchable()->sortable()->toggleable(),
+                Tables\Columns\TextColumn::make('permissions.name')->label('Permisos')->badge()->toggleable(),
             ])
             ->filters([
                 //

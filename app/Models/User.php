@@ -41,7 +41,7 @@ class User extends Authenticatable implements FilamentUser
         //return true;
 
         // O restringe por rol/email:
-        return $this->hasRole('admin');
+        return $this->roles()->exists();
         // return str_ends_with($this->email, '@tudominio.com');
     }
 }

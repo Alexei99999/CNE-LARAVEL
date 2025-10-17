@@ -62,9 +62,10 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')->label('Nombre')->searchable()->sortable(),
-                Tables\Columns\TextColumn::make('email')->label('Correo electrónico')->searchable()->sortable(),
-                Tables\Columns\TextColumn::make('roles.name')->label('Roles')->badge()->sortable(),
+                Tables\Columns\TextColumn::make('id')->label('ID de Persona')->searchable()->sortable()->toggleable(),
+                Tables\Columns\TextColumn::make('name')->label('Nombre')->searchable()->sortable()->toggleable(),
+                Tables\Columns\TextColumn::make('email')->label('Correo electrónico')->searchable()->sortable()->toggleable(),
+                Tables\Columns\TextColumn::make('roles.name')->label('Roles')->badge()->toggleable(),
             ])
             ->filters([
                 //
@@ -96,7 +97,7 @@ class UserResource extends Resource
         ];
     }
 
-    public static function canViewAny(): bool
+       public static function canViewAny(): bool
     {
         return auth()->user()?->hasRole('admin') ?? false;
     }
