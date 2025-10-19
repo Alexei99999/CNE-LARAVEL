@@ -32,12 +32,12 @@ class AdminPanelProvider extends PanelProvider
             ->favicon(asset('images/CNE_logo.png'))
             ->brandLogo(fn () => view('filament.admin.logo'))
             ->colors([
-                'danger' => Color::Rose,
-                'gray' => Color::Gray,
-                'info' => Color::Blue,
-                'primary' => Color::Indigo,
-                'success' => Color::Emerald,
-                'warning' => Color::Orange,
+                'danger' => Color::Red,
+                'gray' => Color::Stone,   // <--- ¡Cambiado a Stone para mejor contraste!
+                'info' => Color::Sky,
+                'primary' => Color::Violet,
+                'success' => Color::Green,
+                'warning' => Color::Amber,
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')

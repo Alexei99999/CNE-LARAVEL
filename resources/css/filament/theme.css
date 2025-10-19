@@ -2,16 +2,310 @@
 @tailwind components;
 @tailwind utilities;
 
+
 /* Personalización: color de fondo del panel lateral */
-/* Modo claro - fondo blanco, texto negro, borde negro */
-.fi-sidebar {
-  background-color: #333333 !important; /* un gris suave, que combina con colores de la paleta */
-  color: #333333 !important; /* texto oscuro para contraste */
-  border-right: 2px solid #333333 !important; /* borde gris claro */
+:root {
+  /* Colores base para la interfaz (tomados de tu 'modo claro') */
+  --sidebar-bg: #333333; /* Fondo de sidebar, header, topbar */
+  --text-color: #eeeeee; /* Color de texto principal */
+  --border-color: #555555; /* Color de borde */
+  --hover-bg: rgba(128, 128, 128, 0.2); /* Fondo en hover */
+  --icon-active-color: #ffffff7e; /* Color de ícono en hover/activo */
+  --border-width: 4px; /* Ancho de borde (4px en tu modo claro) */
+
+  /* VARIABLE: Espaciado vertical para Header y Topbar */
+  --topbar-vertical-padding: 0.75rem; /* AJUSTA este valor para controlar la altura final */
 }
 
+/* ==================================== */
+/* 2. ESTILOS BASE (APLICANDO VARIABLES) */
+/* ==================================== */
+
+/* Evitar color azul en iconos hover y activo */
+.fi-sidebar .fi-sidebar-item-button:hover svg,
+.fi-sidebar .fi-sidebar-item.fi-active > .fi-sidebar-item-button svg {
+  color: var(--icon-active-color) !important;
+  stroke: var(--icon-active-color) !important;
+  fill: var(--icon-active-color) !important;
+}
+
+/* Sidebar (Mantiene los bordes laterales) */
+.fi-sidebar {
+  background-color: var(--sidebar-bg) !important;
+  color: var(--text-color) !important;
+  border-right: var(--border-width) solid var(--border-color);
+  border-left: var(--border-width) solid var(--border-color);
+  border-bottom: var(--border-width) solid var(--border-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Sidebar textos */
+.fi-sidebar .fi-sidebar-item-label,
+.fi-sidebar .fi-sidebar-item-button,
+.fi-sidebar-header {
+  color: var(--text-color) !important;
+  transition: color 0.3s ease;
+}
+
+/* Header - SIN BORDES LATERALES */
+.fi-sidebar-header {
+  background-color: var(--sidebar-bg) !important;
+  color: var(--text-color) !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  box-shadow: none !important;
+  border-bottom: var(--border-width) solid var(--border-color);
+  border-top: var(--border-width) solid var(--border-color);
+  /* Aseguramos que no tenga bordes laterales */
+  border-right: none !important;
+  border-left: none !important;
+  padding-top: var(--topbar-vertical-padding) !important;
+  padding-bottom: var(--topbar-vertical-padding) !important;
+}
+
+/* Header topbar - Contenedor principal - SIN BORDES LATERALES */
+.fi-topbar {
+  background-color: var(--sidebar-bg) !important;
+  color: var(--text-color) !important;
+  border-bottom: var(--border-width) solid var(--border-color);
+  border-top: var(--border-width) solid var(--border-color);
+  /* Eliminamos los bordes laterales para evitar el doble grosor */
+  border-right: none !important;
+  border-left: none !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  box-shadow: none !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Sobrescribir fondo y texto nav dentro de topbar (Control de altura y línea) */
+.fi-topbar nav {
+  background-color: inherit !important;
+  color: inherit !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  height: auto !important;
+  padding-top: var(--topbar-vertical-padding) !important;
+  padding-bottom: var(--topbar-vertical-padding) !important;
+
+  /* Eliminamos la línea extra (ring-1) */
+  --tw-ring-color: transparent !important;
+  box-shadow: none !important;
+  ring: 0 !important;
+  ring-1: 0 !important;
+}
+
+
+/* Hovers */
+.fi-sidebar .fi-sidebar-item-button:hover,
+.fi-sidebar .fi-sidebar-item.fi-active > .fi-sidebar-item-button,
+.fi-topbar button:hover {
+  background-color: var(--hover-bg) !important;
+  transition: background-color 0.3s ease;
+}
+
+/* ==================================== */
+/* 3. MODO OSCURO (IGUAL AL CLARO) */
+/* ==================================== */
+
+/* Sidebar modo oscuro (Mantiene los bordes laterales) */
 .dark .fi-sidebar {
-  background-color: #2c3e50 !important; /* un color oscuro que combina con `Color::Indigo` o `Color::Gray` */
-  color: #f0f0f0 !important; /* texto claro */
-  border-right: 2px solid #2980b9; /* borde azul oscuro, relacionado con la paleta `Color::Blue` o `Color::Indigo` */
+  background-color: var(--sidebar-bg) !important;
+  color: var(--text-color) !important;
+  border-right: var(--border-width) solid var(--border-color);
+  border-left: var(--border-width) solid var(--border-color);
+  border-bottom: var(--border-width) solid var(--border-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Header modo oscuro - SIN BORDES LATERALES */
+.dark .fi-sidebar-header {
+  background-color: var(--sidebar-bg) !important;
+  color: var(--text-color) !important;
+  border-bottom: var(--border-width) solid var(--border-color);
+  border-top: var(--border-width) solid var(--border-color);
+  box-shadow: none !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  /* Aseguramos que no tenga bordes laterales */
+  border-right: none !important;
+  border-left: none !important;
+  padding-top: var(--topbar-vertical-padding) !important;
+  padding-bottom: var(--topbar-vertical-padding) !important;
+}
+
+
+/* Topbar modo oscuro - Contenedor principal - SIN BORDES LATERALES */
+.dark .fi-topbar {
+  background-color: var(--sidebar-bg) !important;
+  color: var(--text-color) !important;
+  border-bottom: var(--border-width) solid var(--border-color);
+  border-top: var(--border-width) solid var(--border-color);
+  /* Eliminamos los bordes laterales para evitar el doble grosor */
+  border-right: none !important;
+  border-left: none !important;
+  box-shadow: none !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Sobrescribir fondo y texto nav dentro de topbar modo oscuro (Control de altura y línea) */
+.dark .fi-topbar nav {
+  background-color: inherit !important;
+  color: inherit !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  height: auto !important;
+  padding-top: var(--topbar-vertical-padding) !important;
+  padding-bottom: var(--topbar-vertical-padding) !important;
+
+  /* Eliminamos la línea extra (ring-1) */
+  --tw-ring-color: transparent !important;
+  box-shadow: none !important;
+  ring: 0 !important;
+  ring-1: 0 !important;
+}
+
+
+/* Hover modo oscuro */
+.dark .fi-topbar button:hover {
+  background-color: var(--hover-bg) !important;
+  transition: background-color 0.3s ease;
+}
+
+/* Asegurar que los hovers del sidebar oscuro también usan la variable */
+.dark .fi-sidebar .fi-sidebar-item-button:hover,
+.dark .fi-sidebar .fi-sidebar-item.fi-active > .fi-sidebar-item-button {
+  background-color: var(--hover-bg) !important;
+  transition: background-color 0.3s ease;
+}
+
+html:not(.dark) .fi-layout {
+    /* Fondo Stone-300 para el tema claro "oscuro" */
+    background-color: var(--c-900, #fefeff); 
+}
+
+
+/* Aplicar estilo de borde a las tarjetas de estadísticas */
+.fi-section,
+.fi-section-content,
+.fi-wi-stats-overview-stat {
+    /* El borde de 800px era demasiado grande. Usa un valor razonable (ej. 2px o tu variable) */
+    border: 2px solid var(--border-color) !important; 
+    
+    /* Quitar la sombra predeterminada (shadow-sm) para consistencia */
+    box-shadow: none !important;
+    
+    /* Anulamos el ring-1 predeterminado de Filament, ya que estamos usando border: 2px */
+    ring: 0 !important;
+    --tw-ring-width: 0 !important;
+}
+
+/* ==================================== */
+/* REGLAS PARA LA TABLA (FI-TA) */
+/* ==================================== */
+
+/* Contenedor principal de la tabla */
+.fi-ta-ctn {
+    /* Aplicar fondo y borde de tu tema */
+    border: 2px solid var(--border-color) !important;
+    /* Quitar la sombra y el ring predeterminados de Filament */
+    box-shadow: none !important;
+    ring: 0 !important;
+    --tw-ring-width: 0 !important;
+}
+
+/* Separadores de la tabla: ajustamos el color de la línea divisoria */
+.fi-ta-ctn.divide-y > * + *,
+.fi-ta-table.divide-y > * + *,
+.fi-ta-content.divide-y > * + *,
+.fi-ta-header-ctn.divide-y > * + *,
+.fi-ta-table.divide-y thead tr {
+    /* Usamos un color de borde claro en modo oscuro para los separadores */
+    border-color: var(--border-color) !important; 
+}
+
+/* Ajustar el fondo del indicador de selección masiva */
+.fi-ta-selection-indicator {
+    border-color: var(--border-color) !important;
+}
+
+/* Ajustar el borde del campo de búsqueda */
+.fi-ta-search-field .fi-input-wrp {
+    border: 2px solid var(--border-color) !important;
+}
+
+/* ==================================== */
+/* REGLAS PARA CHECKBOXES INDIVIDUALES (FI-CHECKBOX-INPUT) */
+/* ==================================== */
+
+.fi-checkbox-input {
+    /* 1. Borde Físico: Aplicamos tu borde de 2px (desactivado por defecto) */
+    border: 2px solid var(--border-color) !important;
+    /* 2. Borde (Ring/Ring-1): Anulamos el ring de Tailwind */
+    ring: 0 !important;
+    --tw-ring-width: 0 !important;
+}
+
+/* Modificar el color del borde cuando el checkbox está 'disabled' (desactivado) */
+.fi-checkbox-input.disabled\\:bg-gray-50, 
+.fi-checkbox-input.dark\\:disabled\\:bg-transparent {
+    border: 2px solid var(--border-color) !important;
+}
+/* ==================================== */
+/* REGLAS AÑADIDAS: LÍNEAS VERTICALES DE LA TABLA (ESTILO CUADRÍCULA) */
+/* ==================================== */
+
+/* Aplicar un borde derecho (línea vertical) a todas las celdas de encabezado */
+.fi-ta-table th {
+    /* El borde derecho crea la línea de división entre columnas */
+    border-right: 1px solid var(--border-color) !important;
+}
+
+/* Aplicar un borde derecho (línea vertical) a todas las celdas de datos */
+.fi-ta-table td {
+    /* El borde derecho crea la línea de división entre columnas */
+    border-right: 1px solid var(--border-color) !important;
+}
+
+/* Opcional: Eliminar el borde derecho de la última columna */
+/* (Para que el borde exterior de 2px de .fi-ta-ctn no se duplique) */
+.fi-ta-table th:last-child,
+.fi-ta-table td:last-child {
+    border-right: none !important;
+}
+
+/* ==================================== */
+/* REGLA AÑADIDA: SEPARACIÓN ENCABEZADO Y CUERPO */
+/* ==================================== */
+
+/* 1. Aplicamos un borde inferior al encabezado de la tabla (thead) */
+.fi-ta-table thead {
+    border-bottom: 1px solid var(--border-color) !important;
+}
+
+/* 2. Asegurar que el div de la barra de herramientas superior también tenga una línea de separación inferior */
+.fi-ta-header-ctn {
+    /* Mantén esta regla si quieres la línea divisoria debajo de todo el contenedor de encabezado */
+    border-bottom: 1px solid var(--border-color) !important;
+}
+
+/* ==================================== */
+/* REGLAS AÑADIDAS: LÍNEAS HORIZONTALES EN EL CONTENIDO SUPERIOR Y DE SELECCIÓN */
+/* ==================================== */
+
+/* Línea divisoria debajo de la barra de herramientas (donde está la búsqueda, botones, etc.) */
+.fi-ta-header-toolbar {
+    /* Esta línea separará la barra de búsqueda/acciones de lo que tenga inmediatamente debajo */
+    border-bottom: 1px solid var(--border-color) !important;
+}
+
+/* Línea divisoria para el indicador de selección masiva (arriba y abajo) */
+.fi-ta-selection-indicator {
+    /* El borde inferior separa el indicador del encabezado de la tabla */
+    border-bottom: 1px solid var(--border-color) !important;
+    
+    /* El borde superior separa el indicador de la barra de herramientas superior */
+    border-top: 1px solid var(--border-color) !important; 
+    
+    /* Nota: Tu regla original ya controla el color del borde. */
 }

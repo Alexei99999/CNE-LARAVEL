@@ -26,5 +26,5 @@ class DatabaseSeeder extends Seeder
         // Asignar rol admin ya creado en permisos basicos
         $adminRole = Role::where('name', 'admin')->first();
         $user->assignRole($adminRole);
-    }
+    }
 }
